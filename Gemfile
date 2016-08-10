@@ -49,3 +49,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use rails_12factor for heroku goodness
 gem 'rails_12factor', group: :production
+
+# Use bootstrap framework
+gem 'bootstrap-sass', '~> 3.3.6'
