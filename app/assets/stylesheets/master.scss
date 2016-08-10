@@ -1,6 +1,7 @@
 // Body styles
 
 body {
+  background: url('grey.png');
   font-family: 'Open Sans', sans-serif;
   padding-top: 50px;
 }
@@ -62,4 +63,8 @@ body {
 .v-center {
     display: flex;
     align-items: center;
+}
+
+.clear {
+  clear: both;
 }
