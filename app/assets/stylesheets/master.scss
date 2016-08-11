@@ -1,64 +1,30 @@
-// Variables
-
-$default-font: 'Open Sans', sans-serif;
-$logo-font: 'Carter One', cursive;
-
-$brand-color: #6699ff;
-$brand-color-light: lighten($brand-color, 25%);
-
-$bg-img: url('blizzard.png');
-
-$navbar-height: 70px;
-$navbar-height-collapsed: 50px;
-
 // Body styles
+
+html,
+body {
+  height: 100%;
+  /* For footer, the html and body elements cannot have any padding or margin. */
+}
 
 body {
   background: $bg-img;
   font-family: $default-font;
-  padding-top: $navbar-height + 20px;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto (-$footer-height);
+  /* Pad bottom by footer height */
+  padding: ($navbar-height + 20px) 0 ($footer-height + 30px);
 }
 
 @media (max-width: 767px) {
-  body {
+  #wrap {
     padding-top: $navbar-height-collapsed + 20px;
   }
-}
-
-// Navbar styles
-
-.navbar {
-  border-radius: 0px;
-  background: $bg-img;
-
-  .navbar-brand {
-    font-family: $logo-font;
-    font-size: 36px;
-    color: $brand-color;
-  }
-  .navbar-brand,
-  .navbar-nav > li > a {
-    line-height: $navbar-height;
-    height: $navbar-height;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  @media (max-width: 767px) {
-    .navbar-brand {
-      line-height: $navbar-height-collapsed;
-      height: $navbar-height-collapsed;
-    }
-    .navbar-nav > li > a {
-      line-height: 20px;
-      height: $navbar-height-collapsed - 10px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-  }
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  background-color: $brand-color-light;
 }
 
 // Hero styles
@@ -167,6 +133,10 @@ body {
 }
 
 .v-center {
-    display: flex;
-    align-items: center;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  align-items: center;
 }

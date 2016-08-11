@@ -1,0 +1,16 @@
+// Variables
+
+$default-font: 'Open Sans', sans-serif;
+$logo-font: 'Carter One', cursive;
+
+$brand-color: #6699ff;
+$brand-color-light: lighten($brand-color, 25%);
+$brand-color-dark: darken($brand-color, 25%);
+$footer-color: #e7e7e7;
+
+$bg-img: url('blizzard.png');
+
+$navbar-height: 70px;
+$navbar-height-collapsed: 50px;
+
+$footer-height: 100px;

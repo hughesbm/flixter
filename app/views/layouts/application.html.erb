@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar', title: 'Flixter' %>
-    <%= render 'flash_messages', flash: flash %>
-    <%= yield %>
+    <div id="wrap">
+      <%= render 'layouts/navbar', title: 'Flixter' %>
+      <%= render 'flash_messages', flash: flash %>
+      <%= yield %>
+      <br class="clear">
+    </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
