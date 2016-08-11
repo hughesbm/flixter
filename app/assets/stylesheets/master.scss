@@ -1,42 +1,92 @@
 // Variables
 
-$logo-font: 'Carter One', cursive;
 $default-font: 'Open Sans', sans-serif;
+$logo-font: 'Carter One', cursive;
 
-$logo-color: #B8F3E7;
+$brand-color: #6699ff;
+$brand-color-light: lighten($brand-color, 25%);
+
+$bg-img: url('blizzard.png');
+
+$navbar-height: 70px;
+$navbar-height-collapsed: 50px;
 
 // Body styles
 
 body {
-  background: url('grey.png');
+  background: $bg-img;
   font-family: $default-font;
-  padding-top: 50px;
+  padding-top: $navbar-height + 20px;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-top: $navbar-height-collapsed + 20px;
+  }
 }
 
 // Navbar styles
 
 .navbar {
   border-radius: 0px;
-  box-shadow: 0px 1px 3px #2a2a2a;
+  background: $bg-img;
 
   .navbar-brand {
     font-family: $logo-font;
-    font-size: 34px;
-    color: $logo-color;
+    font-size: 36px;
+    color: $brand-color;
   }
+  .navbar-brand,
+  .navbar-nav > li > a {
+    line-height: $navbar-height;
+    height: $navbar-height;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  @media (max-width: 767px) {
+    .navbar-brand {
+      line-height: $navbar-height-collapsed;
+      height: $navbar-height-collapsed;
+    }
+    .navbar-nav > li > a {
+      line-height: 20px;
+      height: $navbar-height-collapsed - 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: $brand-color-light;
 }
 
 // Hero styles
 
 .hero {
-  height:370px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0px 3px 5px #2a2a2a;
+  height:500px;
+  box-shadow: 0px 1px 3px #2a2a2a;
   clear: both;
 
   h1,h2,h3,h4,h5,h6 {
     margin-top: 0;
+  }
+}
+
+.hero-spacer {
+  height: 500px;
+  width: 0px;
+}
+
+.hero-top {
+  position: absolute;
+  width: 100%;
+  top: $navbar-height;
+}
+
+@media (max-width: 767px) {
+  .hero-top {
+    top: $navbar-height-collapsed;
   }
 }
 
@@ -46,6 +96,8 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
 .frosty-bg {
@@ -80,7 +132,6 @@ body {
 
   h1 {
     font-family: $logo-font;
-    font-weight: 100;
   }
 }
 
@@ -89,9 +140,11 @@ body {
 .alert {
   margin-top: 20px;
   margin-bottom: 20px;
+  z-index: 1;
 }
 
-.btn {
+.btn,
+.dropdown-menu {
   border-radius: 0px;
 }
 
@@ -106,11 +159,11 @@ body {
   background: #fff;
   border: 1px solid #ccc;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  padding:10px;
+  padding: 20px;
 
-  h1, h2 {
-    margin: 10px;
-  }
+  // h1, h2 {
+  //   margin: 10px;
+  // }
 }
 
 .v-center {
