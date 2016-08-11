@@ -25,11 +25,6 @@ body {
 // Hero styles
 
 .hero {
-  background: url('hero2.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   height:370px;
   display: flex;
   align-items: center;
@@ -40,8 +35,37 @@ body {
     margin-top: 0;
   }
 
+.hero, .frosty-bg {
+  background: url('hero.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+  .frosty-bg {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 99;
+    -webkit-filter:blur(10px);
+    -ms-filter: blur(10px);
+    -o-filter: blur(10px);
+    filter:blur(10px);
+  }
+
+.frosty-container {
+  padding: 0px;
+}
+
 .frosty {
-  background: rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 100;
+  background: rgba(255,255,255,0.3);
+  //background: rgba(125,125,125,0.25);
+  //background: rgba(0,0,0,0.25);
   color: white;
   padding: 3em;
 }
