@@ -55,3 +55,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use Devise for user management
 gem 'devise'
+
+# Use simple_form for forms
+gem 'simple_form'

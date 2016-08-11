@@ -1,8 +1,15 @@
+// Variables
+
+$logo-font: 'Carter One', cursive;
+$default-font: 'Open Sans', sans-serif;
+
+$logo-color: #B8F3E7;
+
 // Body styles
 
 body {
   background: url('grey.png');
-  font-family: 'Open Sans', sans-serif;
+  font-family: $default-font;
   padding-top: 50px;
 }
 
@@ -11,16 +18,13 @@ body {
 .navbar {
   border-radius: 0px;
   box-shadow: 0px 1px 3px #2a2a2a;
-}
 
   .navbar-brand {
-    font-family: 'Carter One', cursive;
+    font-family: $logo-font;
     font-size: 34px;
+    color: $logo-color;
   }
-
-  .navbar-inverse .navbar-brand {
-    color: #B8F3E7;
-  }
+}
 
 // Hero styles
 
@@ -29,11 +33,12 @@ body {
   display: flex;
   align-items: center;
   box-shadow: 0px 3px 5px #2a2a2a;
-}
+  clear: both;
 
-  .hero h1,h2,h3,h4,h5,h6 {
+  h1,h2,h3,h4,h5,h6 {
     margin-top: 0;
   }
+}
 
 .hero, .frosty-bg {
   background: url('hero.jpg') no-repeat center center fixed;
@@ -43,18 +48,18 @@ body {
   background-size: cover;
 }
 
-  .frosty-bg {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    z-index: 99;
-    -webkit-filter:blur(10px);
-    -ms-filter: blur(10px);
-    -o-filter: blur(10px);
-    filter:blur(10px);
-  }
+.frosty-bg {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 99;
+  -webkit-filter:blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter:blur(10px);
+}
 
 .frosty-container {
   padding: 0px;
@@ -68,27 +73,47 @@ body {
   //background: rgba(0,0,0,0.25);
   color: white;
   padding: 3em;
-}
-  .frosty h1 {
-    font-family: 'Carter One', cursive;
-    font-weight: 100;
-    text-shadow: rgba(0,0,0,0.95) 1px 1px;
-  }
-  .frosty h2 {
+
+  h1, h2 {
     text-shadow: rgba(0,0,0,0.95) 1px 1px;
   }
 
+  h1 {
+    font-family: $logo-font;
+    font-weight: 100;
+  }
+}
+
 // Misc component styles
+
+.alert {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .btn {
   border-radius: 0px;
 }
 
+.clear {
+  clear: both;
+}
+
+.lift-box {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding:10px;
+
+  h1, h2 {
+    margin: 10px;
+  }
+}
+
 .v-center {
     display: flex;
     align-items: center;
-}
-
-.clear {
-  clear: both;
 }
