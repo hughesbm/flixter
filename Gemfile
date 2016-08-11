@@ -52,3 +52,6 @@ gem 'rails_12factor', group: :production
 
 # Use bootstrap framework
 gem 'bootstrap-sass', '~> 3.3.6'
+
+# Use Devise for user management
+gem 'devise'
