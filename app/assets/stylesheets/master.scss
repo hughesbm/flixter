@@ -104,18 +104,23 @@ body {
 // Misc component styles
 
 .alert {
-  margin-top: 20px;
+  // margin-top: 20px;
   margin-bottom: 20px;
   z-index: 1;
 }
 
 .btn,
-.dropdown-menu {
+.dropdown-menu,
+.form-control {
   border-radius: 0px;
 }
 
 .clear {
   clear: both;
+}
+
+.form-actions {
+  margin-top: 20px;
 }
 
 .lift-box {
@@ -127,9 +132,9 @@ body {
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
   padding: 20px;
 
-  // h1, h2 {
-  //   margin: 10px;
-  // }
+  h1, h2 {
+    margin-top: 10px;
+  }
 }
 
 .v-center {
