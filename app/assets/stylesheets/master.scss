@@ -73,10 +73,10 @@ body {
   bottom: 0px;
   left: 0px;
   z-index: 99;
-  -webkit-filter:blur(10px);
-  -ms-filter: blur(10px);
-  -o-filter: blur(10px);
-  filter:blur(10px);
+  -webkit-filter:blur($blur-amount);
+  -ms-filter: blur($blur-amount);
+  -o-filter: blur($blur-amount);
+  filter:blur($blur-amount);
 }
 
 .frosty-container {
@@ -86,14 +86,14 @@ body {
 .frosty {
   position: relative;
   z-index: 100;
-  background: rgba(255,255,255,0.3);
-  //background: rgba(125,125,125,0.25);
-  //background: rgba(0,0,0,0.25);
-  color: white;
+  background: rgba(255,255,255,0.2);
+  //background: rgba(30,30,30,0.4);
+  //background: rgba(0,0,0,0.4);
+  color: #fff;
   padding: 3em;
 
   h1, h2 {
-    text-shadow: rgba(0,0,0,0.95) 1px 1px;
+    text-shadow: rgba(0,0,0,0.95) 1px 2px;
   }
 
   h1 {
@@ -104,7 +104,6 @@ body {
 // Misc component styles
 
 .alert {
-  // margin-top: 20px;
   margin-bottom: 20px;
   z-index: 1;
 }

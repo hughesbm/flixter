@@ -1,0 +1,16 @@
+<div class="lift-box col-xs-10 col-xs-offset-1">
+  <h1 class="text-center">Learn something new!</h1>
+  <hr />
+  <% @courses.each do |course| %>
+    <div class="row">
+      <h3 class="text-center"><%= course.title %></h3>
+      <br />
+      <div class= "col-xs-12 col-sm-8">
+        <p><%= course.description %></p>
+      </div>
+      <div class="col-xs-12 col-sm-4 text-center">
+        <%= link_to 'Button', course_path(course.id), class: 'btn btn-primary btn-large' %>
+      </div>
+    </div>
+  <% end %>
+</div>
