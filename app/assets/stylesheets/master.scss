@@ -103,6 +103,16 @@ body {
 
 // Misc component styles
 
+a {
+  color: $brand-color;
+}
+
+a:hover,
+a:focus {
+  color: $brand-color-dark;
+  text-decoration: none;
+}
+
 .alert {
   margin-bottom: 20px;
   z-index: 1;
@@ -110,7 +120,8 @@ body {
 
 .btn,
 .dropdown-menu,
-.form-control {
+.form-control,
+.label {
   border-radius: 0px;
 }
 
@@ -127,6 +138,10 @@ body {
   padding: 10px 8px 2px;
 }
 
+.label {
+  vertical-align: top;
+}
+
 .lift-box {
   -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
   -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
@@ -136,7 +151,7 @@ body {
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
   padding: 20px;
 
-  h1, h2 {
+  h1, h2, h3 {
     margin-top: 10px;
   }
 }
