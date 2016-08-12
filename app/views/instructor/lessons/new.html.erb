@@ -1,11 +1,10 @@
 <div class="lift-box col-xs-10 col-sm-8 col-md-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3">
-  <h1>New Course</h1>
+  <h1>New Lesson</h1>
   <br />
-  <%= simple_form_for @course, url: instructor_courses_path do |f| %>
+  <%= simple_form_for @lesson, url: instructor_section_lessons_path(@section) do |f| %>
     <div class="form-inputs">
       <%= f.input :title %>
-      <%= f.input :description %>
-      <%= f.input :cost %>
+      <%= f.input :subtitle %>
     </div>
 
     <div class="form-actions">
