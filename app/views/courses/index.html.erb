@@ -2,13 +2,20 @@
   <h1 class="text-center">Learn something new!</h1>
   <hr />
   <% @courses.each do |course| %>
-    <div class="row">
-      <div class= "col-xs-12 col-sm-8">
+    <div class="row item-row">
+      <div class="col-xs-12 col-sm-3">
+        <% if course.image.present? %>
+          <%= link_to course_path(course) do %>
+            <%= image_tag course.image.url(:square), class: "list-photo thumbnail img-responsive" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class= "col-xs-12 col-sm-6">
         <h3><%= link_to course.title, course_path(course) %></h3>
         <p><%= course.description %></p>
       </div>
-      <div class="col-xs-12 col-sm-4 text-center">
-        <div><%= link_to 'More Details', course_path(course), class: 'btn btn-primary btn-lg btn-block' %></div>
+      <div class="col-xs-12 col-sm-3 text-center">
+        <div><%= link_to 'More Details', course_path(course), class: 'btn btn-primary btn-block' %></div>
       </div>
     </div>
     <hr />

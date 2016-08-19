@@ -3,6 +3,9 @@
   <hr />
   <div class="row">
     <div class="col-xs-12 col-sm-4 text-center pull-right">
+      <% if @course.image.present? %>
+        <%= image_tag @course.image.url(:square), class: "thumbnail img-responsive" %>
+      <% end %>
       <% if current_user && current_user == @course.user %>
         <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning btn-lg btn-block' %>
       <% end %>

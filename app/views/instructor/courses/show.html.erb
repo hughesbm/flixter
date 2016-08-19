@@ -3,6 +3,9 @@
   <hr />
   <div class="row">
     <div class="col-xs-12 col-sm-4 text-center pull-right">
+      <% if current_course.image.present? %>
+        <%= image_tag current_course.image.url(:square), class: "thumbnail img-responsive" %>
+      <% end %>
       <%= link_to 'Add New Section', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-lg btn-block' %>
       <%= link_to 'Preview as Student', course_path(current_course), class: 'btn btn-warning btn-lg btn-block' %>
       <br />
