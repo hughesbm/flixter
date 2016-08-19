@@ -4,9 +4,11 @@
   <% @courses.each do |course| %>
     <div class="row item-row">
       <div class="col-xs-12 col-sm-3">
-        <% if course.image.present? %>
-          <%= link_to course_path(course) do %>
-            <%= image_tag course.image.url(:square), class: "list-photo thumbnail img-responsive" %>
+        <%= link_to course_path(course) do %>
+          <% if course.image.present? %>
+              <%= image_tag course.image.url(:square), class: "list-photo thumbnail img-responsive" %>
+          <% else %>
+            <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
           <% end %>
         <% end %>
       </div>

@@ -2,12 +2,14 @@
   <h1 class="text-center"><%= @course.title %></h1>
   <hr />
   <div class="row">
-    <div class="col-xs-12 col-sm-4 text-center pull-right">
+    <div class="col-xs-12 col-sm-3 text-center pull-right">
       <% if @course.image.present? %>
         <%= image_tag @course.image.url(:square), class: "thumbnail img-responsive" %>
+      <% else %>
+        <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
       <% end %>
       <% if current_user && current_user == @course.user %>
-        <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning btn-lg btn-block' %>
+        <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning btn-block' %>
       <% end %>
       <h3>
         <span class="label label-success">
@@ -16,7 +18,7 @@
       </h3>
       <br />
     </div>
-    <div class="col-xs-12 col-sm-8 pull-left">
+    <div class="col-xs-12 col-sm-9 pull-left">
       <p><%= @course.description %></p>
       <% @course.sections.each do |section| %>
         <div class="section">
