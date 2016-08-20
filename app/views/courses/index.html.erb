@@ -8,7 +8,7 @@
           <% if course.image.present? %>
               <%= image_tag course.image.url(:square), class: "list-photo thumbnail img-responsive" %>
           <% else %>
-            <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
+            <%= image_tag 'no_img.jpg', class: "list-photo thumbnail img-responsive" %>
           <% end %>
         <% end %>
       </div>

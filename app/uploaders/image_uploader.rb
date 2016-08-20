@@ -3,16 +3,16 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
   # Call method
   process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -28,38 +28,49 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  process :resize_to_limit => [2000, 2000]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
+  # Process files as they are uploaded; limit dimensions and convert to png format:
+  process :mogrify => [{:resolution => '1280x1280'}], :if => :image?
 
-  # Create different versions of your uploaded files:
+  # Create square version
   version :square, :if => :image? do
     process :resize_to_fill => [600, 600]
   end
 
-  version :_small_square, from_version: :square, :if => :image? do
-    process :resize_to_fit => [50, 50]
+  # White list of extensions which are allowed to be uploaded.
+  def extension_white_list
+    %w(jpg jpeg gif png bmp tif tiff)
   end
 
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  # Override the filename of the uploaded files w/ uuid:
+  def filename
+    "#{secure_token}.png" if original_filename.present?
+  end
 
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
-
-  protected
+  private
 
   def image?(new_file)
     new_file.content_type.start_with? 'image'
+  end
+
+  def mogrify(options = {})
+    manipulate! do |img|
+      img.format("png") do |c|
+        c.fuzz        "3%"
+        c.trim
+        c.rotate      "#{options[:rotate]}" if options.has_key?(:rotate)
+        c.resize      "#{options[:resolution]}>" if options.has_key?(:resolution)
+        c.resize      "#{options[:resolution]}<" if options.has_key?(:resolution)
+        c.profile.+   "!xmp,*"
+        c.profile     "#{Rails.root}/lib/color_profiles/sRGB_v4_ICC_preference_displayclass.icc"
+        c.colorspace  "sRGB"
+      end
+      img
+    end
+  end
+
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 
 end
