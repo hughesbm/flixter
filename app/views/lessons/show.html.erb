@@ -1,4 +1,5 @@
 <div class="lift-box col-xs-10 col-xs-offset-1">
   <h1><%= current_lesson.title %></h1>
   <h3><%= current_lesson.subtitle %></h3>
+  <%= link_to 'Video', current_lesson.video.to_s %>
 </div>
