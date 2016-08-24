@@ -2,14 +2,15 @@
   <h1 class="text-center"><%= @course.title %></h1>
   <hr />
   <div class="row">
-    <div class="col-xs-12 col-sm-3 text-center pull-right">
+    <div class="sidebar col-xs-12 col-sm-4 text-center pull-right">
       <% if @course.image.present? %>
         <%= image_tag @course.image.url(:square), class: "thumbnail img-responsive" %>
       <% else %>
         <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
       <% end %>
+      <button class="btn btn-success">Cost: <%= number_to_currency @course.cost %></button>
       <% if current_user && current_user == @course.user %>
-        <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning btn-block' %>
+      <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning' %>
       <% end %>
       <h3>
         <span class="label label-success">
@@ -17,19 +18,23 @@
         </span>
       </h3>
       <br />
+      <div>
+        <p><%= @course.description %></p>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-9 pull-left">
-      <p><%= @course.description %></p>
+    <div class="col-xs-12 col-sm-8 pull-left">
       <% @course.sections.each do |section| %>
-        <div class="section">
-          <%= section.title %>
+        <div class="section flat-box row">
+          <h3><%= section.title %></h3>
           <% section.lessons.each do |lesson| %>
-            <div class="lesson">
-              <%= link_to lesson_path(lesson) do %>
-                <b><%= lesson.title %></b>
-                -
-                <%= lesson.subtitle %>
-              <% end %>
+            <div class="col-xs-12 col-sm-6">
+              <div class="lesson flex text-center h-center v-center">
+                <%= link_to lesson_path(lesson) do %>
+                  <b><%= lesson.title %></b>
+                  <br />
+                  <p><%= lesson.subtitle %></p>
+                <% end %>
+              </div>
             </div>
           <% end %>
         </div>

@@ -139,6 +139,10 @@ a:focus {
   border-radius: 0px;
 }
 
+.btn-h1 {
+  margin: 12px 0;
+}
+
 .clear {
   clear: both;
 }
@@ -154,6 +158,21 @@ a:focus {
 
 .item-row div{
   margin: 10px 0;
+}
+
+.lesson {
+  background-color: #555;
+  margin: 10px 0;
+  height: 120px;
+  font-size: 15px;
+
+  a {
+    color: white;
+  }
+  b {
+    font-size: 25px;
+    line-height: 40px;
+  }
 }
 
 .lift-box {
@@ -173,11 +192,34 @@ a:focus {
   // }
 }
 
-.v-center {
+.flat-box {
+  border: 1px solid;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding: 20px;
+}
+
+.section {
+  margin: 0 0 20px 0;
+}
+
+.sidebar {
+  margin-bottom: 20px;
+
+  .btn {
+    margin: 0 10px 10px 10px;
+  }
+}
+
+.flex {
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
   display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.h-center {
+  justify-content: center;
+}
+.v-center {
   align-items: center;
 }

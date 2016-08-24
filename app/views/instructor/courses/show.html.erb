@@ -2,38 +2,40 @@
   <h1 class="text-center"><%= current_course.title %></h1>
   <hr />
   <div class="row">
-    <div class="col-xs-12 col-sm-3 text-center pull-right">
+    <div class="sidebar col-xs-12 col-sm-4 text-center pull-right">
       <% if current_course.image.present? %>
         <%= image_tag current_course.image.url(:square), class: "thumbnail img-responsive" %>
       <% else %>
         <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
       <% end %>
-      <%= link_to 'Add New Section', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-block' %>
-      <%= link_to 'Preview as Student', course_path(current_course), class: 'btn btn-warning btn-block' %>
+      <%= link_to 'Add New Section', new_instructor_course_section_path(current_course), class: 'btn btn-primary' %>
+      <%= link_to 'Preview as Student', course_path(current_course), class: 'btn btn-warning' %>
       <br />
     </div>
-    <div class="col-xs-12 col-sm-9 pull-left">
-      <% if current_course.sections.present? %>
-        <ul>
-          <% current_course.sections.each do |section| %>
-            <li>
-              <%= section.title %> - <%= link_to 'Add New Lesson', new_instructor_section_lessons_path(section) %>
-              <% if section.lessons.present? %>
-                <ul>
-                  <% section.lessons.each do |lesson| %>
-                    <li>
-                      <b><%= lesson.title %></b>
-                      &mdash;
-                      <%= lesson.subtitle %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
-              <br class="clear" />
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
+    <div class="col-xs-12 col-sm-8 pull-left">
+      <div class="section flat-box row">
+        <% if current_course.sections.present? %>
+          <ul>
+            <% current_course.sections.each do |section| %>
+              <li>
+                <%= section.title %> - <%= link_to 'Add New Lesson', new_instructor_section_lessons_path(section) %>
+                <% if section.lessons.present? %>
+                  <ul>
+                    <% section.lessons.each do |lesson| %>
+                      <li>
+                        <b><%= lesson.title %></b>
+                        &mdash;
+                        <%= lesson.subtitle %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+                <br class="clear" />
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
