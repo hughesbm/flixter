@@ -1,37 +1,15 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to title, root_path, class: 'navbar-brand' %>
+<nav class="navbar navbar-fixed-top navbar-light">
+  <%= link_to title, root_path, class: 'navbar-brand' %>
+  <div class="nav navbar-nav">
+    <%= link_to 'Courses', courses_path, class: 'nav-item nav-link' %>
+  </div>
+  <button class="navbar-toggler pull-xs-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    &#9776;
+  </button>
+  <div class="collapse" id="exCollapsingNavbar">
+    <div class="bg-inverse p-a-1">
+      <h4>Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Courses', courses_path %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% unless current_user.present? %>
-          <li><%= link_to 'Create Account', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <% else %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'My Profile', '#' %></li>
-              <li><%= link_to 'Edit My Account', edit_user_registration_path %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+  </div>
 </nav>
