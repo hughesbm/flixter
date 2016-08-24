@@ -1,7 +1,8 @@
 <div class="lift-box col-xs-10 col-xs-offset-1">
-  <h1><%= current_lesson.title %>: <%= current_lesson.subtitle %></h1>
+  <h1 class="pull-left"><%= current_lesson.title %>: <%= current_lesson.subtitle %></h1>
+  <%= link_to 'Back to Course Page', course_path(current_lesson.section.course), class: 'btn btn-primary pull-right' %>
 
-  <hr />
+  <hr class="clear" />
 
   <video id="my-video" class="video-js vjs-default-skin vjs-fluid vjs-big-play-centered" controls preload="auto" poster="<%= image_path 'black.jpg' %>" data-setup="{}">
     <source src="<%= current_lesson.video.to_s %>" type='video/mp4'>
@@ -14,6 +15,7 @@
   </video>
 
   <hr />
+
 
   <p><%= current_lesson.section.course.description %></p>
 </div>
