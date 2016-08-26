@@ -29,10 +29,21 @@ body {
 
 // Hero styles
 
+%hero-bg {
+  background: url('hero.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
 .hero {
   height:500px;
   box-shadow: 0px 1px 3px #2a2a2a;
   clear: both;
+  @extend %hero-bg;
 
   h1,h2,h3,h4,h5,h6 {
     margin-top: 0;
@@ -56,33 +67,6 @@ body {
   }
 }
 
-.hero, .frosty-bg {
-  background: url('hero.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center center;
-}
-
-.frosty-bg {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  z-index: 99;
-  -webkit-filter:blur($blur-amount);
-  -ms-filter: blur($blur-amount);
-  -o-filter: blur($blur-amount);
-  filter:blur($blur-amount);
-}
-
-.frosty-container {
-  padding: 0px;
-}
-
 .frosty {
   position: relative;
   z-index: 100;
@@ -101,6 +85,24 @@ body {
   }
 }
 
+.frosty-bg {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 99;
+  -webkit-filter:blur($blur-amount);
+  -ms-filter: blur($blur-amount);
+  -o-filter: blur($blur-amount);
+  filter:blur($blur-amount);
+  @extend %hero-bg;
+}
+
+.frosty-container {
+  padding: 0px;
+}
+
 // Image styles
 
 .thumbnail {
@@ -114,16 +116,50 @@ body {
   padding: 0 10px;
 }
 
+// Box styles
+
+.flat-box {
+  border: 1px solid;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding: 20px;
+}
+
+.lift-box {
+  @extend .flat-box;
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #fff;
+
+  h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+}
+
 // Misc component styles
+
+// .alert,
+// .btn,
+// .dropdown-menu,
+// .form-control,
+// .label {
+//   border-radius: 0px;
+// }
+
+* {
+  border-radius: 0px !important;
+}
 
 a {
   color: $brand-color;
-}
 
-a:hover,
-a:focus {
-  color: $brand-color-dark;
-  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: $brand-color-dark;
+    text-decoration: none;
+  }
 }
 
 .alert {
@@ -131,20 +167,24 @@ a:focus {
   z-index: 1;
 }
 
-.alert,
-.btn,
-.dropdown-menu,
-.form-control,
-.label {
-  border-radius: 0px;
-}
-
-.btn-h1 {
-  margin: 12px 0;
+.btn {
+  &-h1 {
+    margin: 12px 0;
+  }
 }
 
 .clear {
   clear: both;
+}
+
+.flex-center {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  align-items: center;
+  justify-content: center;
 }
 
 .form-actions {
@@ -156,7 +196,7 @@ a:focus {
   padding: 10px 8px 2px;
 }
 
-.item-row div{
+.item-row div {
   margin: 10px 0;
 }
 
@@ -175,29 +215,6 @@ a:focus {
   }
 }
 
-.lift-box {
-  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  box-shadow: 1px 1px 2px 0 #d0d0d0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  padding: 20px;
-
-  h1, h2, h3 {
-    margin-top: 10px;
-  }
-  // .btn {
-  //   margin: 6px;
-  // }
-}
-
-.flat-box {
-  border: 1px solid;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  padding: 20px;
-}
-
 .section {
   margin: 0 0 20px 0;
 }
@@ -208,18 +225,4 @@ a:focus {
   .btn {
     margin: 0 10px 10px 10px;
   }
-}
-
-.flex {
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;      /* TWEENER - IE 10 */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-}
-.h-center {
-  justify-content: center;
-}
-.v-center {
-  align-items: center;
 }
