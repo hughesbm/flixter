@@ -3,17 +3,15 @@
   <hr />
   <div class="row">
     <div class="sidebar col-xs-12 col-sm-4 text-center pull-right">
-      <% if current_course.image.present? %>
-        <%= image_tag current_course.image.url(:square), class: "thumbnail img-responsive" %>
-      <% else %>
-        <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
-      <% end %>
+      <div class="thumbnail">
+        <%= render 'course_image', course: current_course %>
+      </div>
       <%= link_to 'Add New Section', new_instructor_course_section_path(current_course), class: 'btn btn-primary' %>
       <%= link_to 'Preview as Student', course_path(current_course), class: 'btn btn-warning' %>
       <br />
     </div>
     <div class="col-xs-12 col-sm-8 pull-left">
-      <div class="section flat-box row">
+      <div class="section-box flat-box row">
         <% if current_course.sections.present? %>
           <ul>
             <% current_course.sections.each do |section| %>

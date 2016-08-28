@@ -1,0 +1,5 @@
+<% if course.image.present? %>
+  <%= image_tag course.image.url(:square), class: "img-responsive" %>
+<% else %>
+  <%= image_tag 'no_img.jpg', class: "img-responsive" %>
+<% end %>

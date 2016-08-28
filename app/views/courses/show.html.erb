@@ -14,26 +14,26 @@
       <% end %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-3">
-      <% if @course.image.present? %>
-        <%= image_tag @course.image.url(:square), class: "img-responsive" %>
-      <% else %>
-        <%= image_tag 'no_img.jpg', class: "thumbnail img-responsive" %>
-      <% end %>
+      <%= render 'course_image', course: @course %>
     </div>
   </div>
   <hr />
   <div class="row">
     <div class="col-xs-12">
       <% @course.sections.each do |section| %>
-        <div class="section flat-box row text-center">
+        <div class="section-box flat-box row text-center">
           <h2><%= section.title %></h2>
           <% section.lessons.each do |lesson| %>
             <div class="col-xs-12 col-sm-6">
-              <div class="lesson flex-center text-center">
-                <%= link_to lesson_path(lesson) do %>
-                  <b><%= lesson.title %></b>
-                  <br />
-                  <p><%= lesson.subtitle %></p>
+              <div class="lesson-card flex-center text-center">
+                <% if current_user && (current_user.enrolled_in?(@course) || @course.user == current_user) %>
+                  <%= link_to lesson_path(lesson) do %>
+                    <%= render 'lesson_card', lesson: lesson %>
+                  <% end %>
+                <% else %>
+                  <div>
+                    <%= render 'lesson_card', lesson: lesson %>
+                  </div>
                 <% end %>
               </div>
             </div>
