@@ -69,3 +69,6 @@ gem 'figaro'
 
 # Use Stripe for credit card payments
 gem 'stripe'
+
+# Use ranked-model for storing order of lessons
+gem 'ranked-model'
