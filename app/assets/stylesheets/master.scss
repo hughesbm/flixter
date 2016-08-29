@@ -140,16 +140,12 @@ body {
 
 // Misc component styles
 
-// .alert,
-// .btn,
-// .dropdown-menu,
-// .form-control,
-// .label {
-//   border-radius: 0px;
-// }
-
-* {
-  border-radius: 0px !important;
+.alert,
+.btn,
+.dropdown-menu,
+.form-control,
+.label {
+  border-radius: 0px;
 }
 
 a {

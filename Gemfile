@@ -66,3 +66,6 @@ gem 'carrierwave-aws'
 
 # Use figaro
 gem 'figaro'
+
+# Use Stripe for credit card payments
+gem 'stripe'

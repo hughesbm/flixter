@@ -1,0 +1,25 @@
+var handler = StripeCheckout.configure({
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  locale: 'auto',
+  token: function(response) {
+    var tokenInput = $("<input type=hidden name=stripeToken />").val(response.id);
+    var emailInput = $("<input type=hidden name=stripeEmail />").val(response.email);
+    $("form").append(tokenInput).append(emailInput).submit();
+  }
+});
+
+$('#enrollButton').on('click', function(e) {
+  // Open Checkout with further options:
+  handler.open({
+    name: 'Flixter',
+    email: '<%= current_user.email %>',
+    description: '<%= @course.title %>',
+    amount: <%= (@course.cost * 100).to_i %>
+  });
+  e.preventDefault();
+});
+
+// Close Checkout on page navigation:
+$(window).on('popstate', function() {
+  handler.close();
+});
