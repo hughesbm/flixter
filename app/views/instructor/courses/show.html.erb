@@ -18,9 +18,9 @@
               <li>
                 <%= section.title %> - <%= link_to 'Add New Lesson', new_instructor_section_lessons_path(section) %>
                 <% if section.lessons.present? %>
-                  <ul>
+                  <ul class="lessons">
                     <% section.lessons.rank(:row_order).each do |lesson| %>
-                      <li>
+                      <li data-update-url=<%= instructor_lesson_path(lesson) %>>
                         <b><%= lesson.title %></b>
                         &mdash;
                         <%= lesson.subtitle %>
