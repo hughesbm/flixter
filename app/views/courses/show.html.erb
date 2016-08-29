@@ -7,18 +7,22 @@
       <h3><span class="label label-success">
         Cost: <%= @course.is_free? ? 'Free!' : (number_to_currency @course.cost) %>
       </span></h3>
-      <% if current_user && current_user == @course.user %>
-        <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning' %>
-      <% elsif current_user && current_user.enrolled_in?(@course) %>
-        <h3><span class="label label-info">You are enrolled in this course!</span></h3>
-      <% elsif @course.is_free? %>
-        <%= link_to 'Enroll in Course', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
-      <% else %>
-        <%= form_tag course_enrollments_path(@course) do %>
-          <script src="https://checkout.stripe.com/checkout.js"></script>
-          <button id="enrollButton" class="btn btn-primary">Enroll in Course</button>
-          <script><%= render 'payments.js' %></script>
+      <% if current_user %>
+        <% if current_user == @course.user %>
+          <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning' %>
+        <% elsif current_user.enrolled_in?(@course) %>
+          <h3><span class="label label-info">You are enrolled in this course!</span></h3>
+        <% elsif @course.is_free? %>
+          <%= link_to 'Enroll in Course', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
+        <% else %>
+          <%= form_tag course_enrollments_path(@course) do %>
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+            <button id="enrollButton" class="btn btn-primary">Enroll in Course</button>
+            <script><%= render 'payments.js' %></script>
+          <% end %>
         <% end %>
+      <% else %>
+        <%= link_to 'Sign in to Enroll', new_user_session_path, class: 'btn btn-primary' %>
       <% end %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-3">
@@ -31,6 +35,7 @@
       <% @course.sections.each do |section| %>
         <div class="section-box flat-box row text-center">
           <h2><%= section.title %></h2>
+          <hr />
           <% section.lessons.each do |lesson| %>
             <div class="col-xs-12 col-sm-6">
               <div class="lesson-card flex-center text-center">
