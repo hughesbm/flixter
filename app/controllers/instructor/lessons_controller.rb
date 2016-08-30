@@ -18,20 +18,20 @@ class Instructor::LessonsController < ApplicationController
 
   def update
     current_lesson.update_attributes(lesson_params)
-    render text: 'updated!'
+    render plain: 'updated!'
   end
 
   private
 
   def require_authorized_for_current_section
     if current_section.course.user != current_user
-      return render text: 'Unauthorized', status: :unauthorized
+      return render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
   def require_authorized_for_current_lesson
     if current_lesson.section.course.user != current_user
-      return render text: 'Unauthorized', status: :unauthorized
+      return render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
