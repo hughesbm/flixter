@@ -1,39 +1,58 @@
-<div class="lift-box col-xs-10 col-xs-offset-1">
+<div class="lift-box col-xs-12 col-sm-10 col-sm-offset-1">
   <h1 class="text-center"><%= current_course.title %></h1>
   <hr />
   <div class="row">
-    <div class="sidebar col-xs-12 col-sm-4 text-center pull-right">
+    <div class="sidebar col-xs-12 col-sm-3 text-center">
       <div class="thumbnail">
         <%= render 'course_image', course: current_course %>
       </div>
-      <%= link_to 'Add New Section', new_instructor_course_section_path(current_course), class: 'btn btn-primary' %>
-      <%= link_to 'Preview as Student', course_path(current_course), class: 'btn btn-warning' %>
+      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-warning' %>
       <br />
     </div>
-    <div class="col-xs-12 col-sm-8 pull-left">
-      <div class="section-box flat-box row">
-        <% if current_course.sections.present? %>
-          <ul class="sections">
-            <% current_course.sections.rank(:row_order).each do |section| %>
-              <li data-update-url=<%= instructor_section_path(section) %>>
-                <%= section.title %> - <%= link_to 'Add New Lesson', new_instructor_section_lessons_path(section) %>
+    <div class="col-xs-12 col-sm-9">
+      <% if current_course.sections.present? %>
+        <div class="sections">
+          <% current_course.sections.rank(:row_order).each do |section| %>
+            <div class="section-item" data-update-url=<%= instructor_section_path(section) %>>
+              <div class="section-item-header text-center">
+                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                <%= section.title %>
+              </div>
+              <div class="section-body">
                 <% if section.lessons.present? %>
-                  <ul class="lessons">
+                  <div class="lessons">
                     <% section.lessons.rank(:row_order).each do |lesson| %>
-                      <li data-update-url=<%= instructor_lesson_path(lesson) %>>
-                        <b><%= lesson.title %></b>
-                        &mdash;
-                        <%= lesson.subtitle %>
-                      </li>
+                      <div class="lesson-card" data-update-url=<%= instructor_lesson_path(lesson) %>>
+                        <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                        <div class="lesson-info flex-center text-center">
+                          <div>
+                            <%= render 'lesson_card', lesson: lesson %>
+                          </div>
+                        </div>
+                      </div>
                     <% end %>
-                  </ul>
+                  </div>
                 <% end %>
-                <br class="clear" />
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+                <%= link_to new_instructor_section_lessons_path(section) do %>
+                  <div class="new-lesson-card flex-center text-center">
+                    <div class="new-item">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Lesson</b>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <br class="clear" />
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to new_instructor_course_section_path(current_course) do %>
+        <div class="new-section-item flex-center text-center">
+          <div class="new-item">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Section</b>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

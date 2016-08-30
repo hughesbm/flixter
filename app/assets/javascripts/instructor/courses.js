@@ -3,12 +3,24 @@
 //
 $(function() {
   const sortableObjects = ["lessons", "sections"]
+  const sectionIcons = {
+    header: "glyphicon glyphicon-menu-left",
+    activeHeader: "glyphicon glyphicon-menu-down"
+  };
   let ajaxParams = {
     type: 'PUT',
     dataType: 'json'
   };
+  $('.sections').accordion({
+    header: "> div > div.section-item-header",
+    heightStyle: "content",
+    icons: sectionIcons,
+    collapsible: true
+  });
   for (let sortObject of sortableObjects) {
-    $(document.getElementsByClassName(sortObject)).sortable({
+    $(document.getElementsByClassName(sortObject))
+    .sortable({
+      cancel: ".ui-state-disabled",
       update: function(event, ui) {
         ajaxParams.url = ui.item.data('update-url');
         if (sortObject == "lessons") {
@@ -19,5 +31,7 @@ $(function() {
         $.ajax(ajaxParams);
       }
     });
+    // $(document.getElementsByClassName(sortObject + " div")).disableSelection();
+    // });
   }
 });

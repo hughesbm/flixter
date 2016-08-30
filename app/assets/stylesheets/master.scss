@@ -23,8 +23,24 @@ body {
 
 @media (max-width: 767px) {
   #wrap {
-    padding-top: $navbar-height-collapsed + 20px;
+    padding-top: $navbar-height-collapsed;
   }
+}
+
+// Override bootstrappy border-radius
+
+.alert,
+.btn,
+.dropdown-menu,
+.form-control,
+.label,
+.thumbnail {
+  border-radius: 0px;
+}
+
+.alert {
+  margin-bottom: 20px;
+  z-index: 1;
 }
 
 // Hero styles
@@ -107,7 +123,6 @@ body {
 
 .thumbnail {
   border: none;
-  border-radius: 0;
   padding: 0;
 }
 
@@ -124,29 +139,86 @@ body {
   padding: 20px;
 }
 
+.item-row div {
+  margin: 10px 0;
+}
+
+.lesson-card {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #555;
+  margin: 10px 0;
+  height: 120px;
+  font-size: 15px;
+  color: white;
+
+  .glyphicon-option-vertical {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+
+  .lesson-info {
+    height: 100%;
+    padding: 15px 20px;
+  }
+}
+
+.lessons {
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
 .lift-box {
   @extend .flat-box;
   -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
   -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
   box-shadow: 1px 1px 2px 0 #d0d0d0;
   background: #fff;
+}
 
-  h1, h2, h3 {
-    margin-top: 10px;
-    margin-bottom: 20px;
+@media (max-width: 767px) {
+  .lift-box {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    background: none;
   }
-
 }
 
-// Misc component styles
-
-.alert,
-.btn,
-.dropdown-menu,
-.form-control,
-.label {
-  border-radius: 0px;
+.new-lesson-card {
+  @extend .lesson-card;
+  height: auto;
+  padding: 15px;
+  margin: 0 20px;
+  background-color: $brand-color;
 }
+
+.new-section-item {
+  @extend .flat-box;
+  color: $brand-color;
+}
+
+.section-box {
+  margin: 0 0 20px 0;
+}
+
+.section-item {
+  @extend .flat-box;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.sidebar {
+  margin-bottom: 20px;
+
+  .btn {
+    margin: 0 10px 10px 10px;
+  }
+}
+
+// Text styles
 
 a {
   color: $brand-color;
@@ -158,16 +230,62 @@ a {
   }
 }
 
-.alert {
-  margin-bottom: 20px;
-  z-index: 1;
+.lessons,
+.sections {
+  list-style-type: none;
 }
 
-.btn {
-  &-h1 {
-    margin: 12px 0;
+.lesson-card {
+  a {
+    color: white;
+  }
+  b {
+    font-size: 25px;
+    line-height: 40px;
+  }
+  .glyphicon {
+    font-size: 20px;
   }
 }
+
+.lift-box {
+  h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.new-item {
+  font-size: 25px;
+
+  .glyphicon {
+    font-size: 20px;
+  }
+}
+
+.new-lesson-card {
+  @extend .new-item;
+}
+
+.section-item-header {
+  font-size: 30px;
+
+  .glyphicon {
+    font-size: 25px;
+    line-height: 40px;
+    font-size: 30px;
+  }
+
+  .glyphicon-option-vertical {
+    float: left;
+  }
+
+  .ui-accordion-header-icon {
+    float: right;
+  }
+}
+
+// Misc component styles
 
 .clear {
   clear: both;
@@ -190,36 +308,4 @@ a {
 .has-error {
   background-color: #FFEEEE;
   padding: 10px 8px 2px;
-}
-
-.item-row div {
-  margin: 10px 0;
-}
-
-.lesson-card {
-  background-color: #555;
-  margin: 10px 0;
-  height: 120px;
-  font-size: 15px;
-  color: white;
-
-  a {
-    color: white;
-  }
-  b {
-    font-size: 25px;
-    line-height: 40px;
-  }
-}
-
-.section-box {
-  margin: 0 0 20px 0;
-}
-
-.sidebar {
-  margin-bottom: 20px;
-
-  .btn {
-    margin: 0 10px 10px 10px;
-  }
 }
