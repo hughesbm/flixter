@@ -99,6 +99,15 @@ body {
   h1 {
     font-family: $logo-font;
   }
+
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+  }
 }
 
 .frosty-bg {
@@ -128,7 +137,7 @@ body {
 
 .list-photo {
   margin: 0;
-  padding: 0 10px;
+  // padding: 0 10px;
 }
 
 // Box styles
@@ -139,7 +148,7 @@ body {
   padding: 20px;
 }
 
-.item-row div {
+.item-row > div {
   margin: 10px 0;
 }
 
