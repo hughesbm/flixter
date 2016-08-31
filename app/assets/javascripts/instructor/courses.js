@@ -5,8 +5,8 @@ $(function() {
     activeHeader: "glyphicon glyphicon-menu-down"
   };
   // Sets proper url for lesson creation
-  $('.new-lesson-card').click(function(){
-    var lessonUrl = $( this ).data('lesson-url');
+  $('.new-lesson-card').click(function( event ){
+    var lessonUrl = $( event.currentTarget ).data('lesson-url');
     $('#newLessonForm').attr('action', lessonUrl);
   });
   // Accordions sections
