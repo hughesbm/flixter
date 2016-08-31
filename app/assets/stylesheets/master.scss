@@ -148,13 +148,20 @@ body {
   padding: 20px;
 }
 
+.instructor-card {
+  margin-top: 20px !important;
+}
+
+.instructor-list {
+  padding-top: 10px;
+}
+
 .item-row > div {
   margin: 10px 0;
 }
 
 .lesson-card {
   position: relative;
-  box-sizing: border-box;
   background-color: #555;
   margin: 10px 0;
   height: 120px;
@@ -196,11 +203,15 @@ body {
   }
 }
 
+.new-lesson {
+  padding: 0 20px;
+}
+
 .new-lesson-card {
   @extend .lesson-card;
   height: auto;
   padding: 15px;
-  margin: 0 20px;
+  // margin: 0 20px;
   background-color: $brand-color;
 }
 
@@ -216,7 +227,23 @@ body {
 .section-item {
   @extend .flat-box;
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+}
+
+.section-item-header {
+  position: relative;
+
+  .glyphicon-option-vertical {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .ui-accordion-header-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 
 .sidebar {
@@ -242,11 +269,6 @@ a {
   color: $brand-color;
   font-family: $logo-font;
   font-size: 45px;
-}
-
-.lessons,
-.sections {
-  list-style-type: none;
 }
 
 .lesson-card {
@@ -288,14 +310,6 @@ a {
     font-size: 25px;
     line-height: 40px;
     font-size: 30px;
-  }
-
-  .glyphicon-option-vertical {
-    float: left;
-  }
-
-  .ui-accordion-header-icon {
-    float: right;
   }
 }
 
