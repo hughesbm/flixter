@@ -7,7 +7,7 @@
       <% if current_course.sections.present? %>
         <div class="sections">
           <% current_course.sections.rank(:row_order).each do |section| %>
-            <div class="section-item" data-update-url=<%= instructor_section_path(section) %>>
+            <div class="section-item" data-update-url="<%= instructor_section_path(section) %>">
               <div class="section-item-header text-center">
                 <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
                 <%= section.title %>
@@ -15,32 +15,26 @@
               <div class="section-body instructor-list">
                 <% if section.lessons.present? %>
                   <div class="lessons">
-                    <!-- <div class="col-xs-12" > -->
-                      <% section.lessons.rank(:row_order).each do |lesson| %>
-                        <div class="lesson-card instructor-card" data-update-url=<%= instructor_lesson_path(lesson) %>>
-                          <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-                          <div class="lesson-info flex-center text-center">
-                            <div>
-                              <%= render 'lesson_card', lesson: lesson %>
-                            </div>
-                          </div>
-                        </div>
-                      <% end %>
-                    <!-- </div> -->
-                  </div>
-                <% end %>
-                <div class="new-lesson">
-                  <%= link_to new_instructor_section_lessons_path(section) do %>
-                    <!-- <div class="col-xs-12"> -->
-                      <div class="new-lesson-card instructor-card">
-                        <div class="new-item flex-center text-center">
+                    <% section.lessons.rank(:row_order).each do |lesson| %>
+                      <div class="lesson-card instructor-card" data-update-url="<%= instructor_lesson_path(lesson) %>">
+                        <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                        <div class="lesson-info flex-center text-center">
                           <div>
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Lesson</b>
+                            <%= render 'lesson_card', lesson: lesson %>
                           </div>
                         </div>
                       </div>
-                    <!-- </div> -->
-                  <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <div class="new-lesson">
+                  <div class="new-lesson-card instructor-card" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
+                    <div class="new-item flex-center text-center">
+                      <div>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Lesson</b>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <br class="clear" />
@@ -48,13 +42,11 @@
           <% end %>
         </div>
       <% end %>
-      <%= link_to new_instructor_course_section_path(current_course) do %>
-      <div class="new-section-item flex-center text-center">
+      <div class="new-section-item flex-center text-center" data-toggle="modal" data-target="#newSectionModal">
         <div class="new-item">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Section</b>
         </div>
       </div>
-      <% end %>
     </div>
     <div class="sidebar col-xs-12 col-sm-4 col-md-3 text-center">
       <hr class="visible-xs" />
@@ -67,3 +59,6 @@
     </div>
   </div>
 </div>
+<!-- Modals for new sections / lessons -->
+<%= render partial: 'new_item_modal', locals: { type: "Section" } %>
+<%= render partial: 'new_item_modal', locals: { type: "Lesson" } %>

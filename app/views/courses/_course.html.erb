@@ -1,5 +1,5 @@
 <div class="row item-row">
-  <div class="col-xs-12 col-sm-3">
+  <div class="col-xs-12 col-sm-3 col-md-2">
     <%= link_to course_path(course) do %>
       <% if course.image.present? %>
           <%= image_tag course.image.url(:square), class: "list-photo thumbnail img-responsive" %>
@@ -8,11 +8,14 @@
       <% end %>
     <% end %>
   </div>
-  <div class= "col-xs-12 col-sm-6">
+  <div class= "col-xs-12 col-sm-6 col-md-7">
     <h3><%= link_to course.title, course_path(course) %></h3>
     <p><%= course.description %></p>
   </div>
-  <div class="col-xs-12 col-sm-3 text-center">
-    <div><%= link_to 'More Details', course_path(course), class: 'btn btn-primary btn-block' %></div>
+  <div class="col-xs-12 col-sm-3">
+    <div class="text-center">
+      <h4>Cost: <%= course.is_free? ? 'Free!' : (number_to_currency course.cost) %></h4>
+      <%= link_to 'More Details', course_path(course), class: 'btn btn-primary' %>
+    </div>
   </div>
 </div>
