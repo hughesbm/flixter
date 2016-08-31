@@ -1,0 +1,14 @@
+<div class="lift-box col-xs-12 col-sm-10 col-sm-offset-1">
+  <h1>My Dashboard</h1>
+  <hr />
+  <div class="flat-box item-row">
+    <h2>Enrolled in:</h2>
+    <hr />
+    <%= render(partial: current_user.enrolled_courses, spacer_template: 'layouts/hr_separator') || "You are not enrolled in any courses." %>
+  </div>
+  <div class="flat-box item-row">
+    <h2>Teaching:</h2>
+    <hr />
+    <%= render(partial: current_user.courses, spacer_template: 'layouts/hr_separator') || "You are not teaching any courses." %>
+  </div>
+</div>
