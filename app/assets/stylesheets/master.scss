@@ -337,3 +337,8 @@ a {
   background-color: #FFEEEE;
   padding: 10px 8px 2px;
 }
+
+// Fix highlighting with jQuery UI accordion
+.ui-state-focus {
+  outline: none;
+}
