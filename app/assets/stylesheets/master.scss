@@ -220,7 +220,6 @@ body {
 }
 
 .sidebar {
-  margin-bottom: 20px;
 
   .btn {
     margin: 0 10px 10px 10px;
@@ -237,6 +236,12 @@ a {
     color: $brand-color-dark;
     text-decoration: none;
   }
+}
+
+.course-title {
+  color: $brand-color;
+  font-family: $logo-font;
+  font-size: 45px;
 }
 
 .lessons,

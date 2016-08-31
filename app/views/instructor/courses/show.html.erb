@@ -1,15 +1,8 @@
 <div class="lift-box col-xs-12 col-sm-10 col-sm-offset-1">
-  <h1 class="text-center"><%= current_course.title %></h1>
-  <hr />
   <div class="row">
-    <div class="sidebar col-xs-12 col-sm-3 text-center">
-      <div class="thumbnail">
-        <%= render 'course_image', course: current_course %>
-      </div>
-      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-warning' %>
-      <br />
-    </div>
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-12 col-sm-8 col-md-9">
+      <h1 class="course-title text-center"><%= current_course.title %></h1>
+      <hr />
       <% if current_course.sections.present? %>
         <div class="sections">
           <% current_course.sections.rank(:row_order).each do |section| %>
@@ -22,14 +15,14 @@
                 <% if section.lessons.present? %>
                   <div class="lessons">
                     <% section.lessons.rank(:row_order).each do |lesson| %>
-                      <div class="lesson-card" data-update-url=<%= instructor_lesson_path(lesson) %>>
-                        <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-                        <div class="lesson-info flex-center text-center">
-                          <div>
-                            <%= render 'lesson_card', lesson: lesson %>
-                          </div>
+                    <div class="lesson-card" data-update-url=<%= instructor_lesson_path(lesson) %>>
+                      <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                      <div class="lesson-info flex-center text-center">
+                        <div>
+                          <%= render 'lesson_card', lesson: lesson %>
                         </div>
                       </div>
+                    </div>
                     <% end %>
                   </div>
                 <% end %>
@@ -47,12 +40,21 @@
         </div>
       <% end %>
       <%= link_to new_instructor_course_section_path(current_course) do %>
-        <div class="new-section-item flex-center text-center">
-          <div class="new-item">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Section</b>
-          </div>
+      <div class="new-section-item flex-center text-center">
+        <div class="new-item">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Section</b>
         </div>
+      </div>
       <% end %>
+    </div>
+    <div class="sidebar col-xs-12 col-sm-4 col-md-3 text-center">
+      <hr class="visible-xs" />
+      <div class="thumbnail">
+        <%= render 'course_image', course: current_course %>
+      </div>
+      <hr />
+      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-warning' %>
+      <br />
     </div>
   </div>
 </div>

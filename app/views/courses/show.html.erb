@@ -1,58 +1,71 @@
-<div class="lift-box col-xs-10 col-xs-offset-1">
+<div class="lift-box col-xs-12 col-sm-10 col-sm-offset-1">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-9">
-      <h1><%= @course.title %></h1>
-      <p><%= @course.description %></p>
-      <br />
-      <h3><span class="label label-success">
-        Cost: <%= @course.is_free? ? 'Free!' : (number_to_currency @course.cost) %>
-      </span></h3>
-      <% if current_user %>
-        <% if current_user == @course.user %>
-          <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning' %>
-        <% elsif current_user.enrolled_in?(@course) %>
-          <h3><span class="label label-info">You are enrolled in this course!</span></h3>
-        <% elsif @course.is_free? %>
-          <%= link_to 'Enroll in Course', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
-        <% else %>
-          <%= form_tag course_enrollments_path(@course) do %>
-            <script src="https://checkout.stripe.com/checkout.js"></script>
-            <button id="enrollButton" class="btn btn-primary">Enroll in Course</button>
-            <script><%= render 'payments.js' %></script>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= link_to 'Sign in to Enroll', new_user_session_path, class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-3">
-      <%= render 'course_image', course: @course %>
-    </div>
-  </div>
-  <hr />
-  <div class="row">
-    <div class="col-xs-12">
-      <% @course.sections.each do |section| %>
-        <div class="section-box flat-box row text-center">
-          <h2><%= section.title %></h2>
-          <hr />
-          <% section.lessons.rank(:row_order).each do |lesson| %>
-            <div class="col-xs-12 col-sm-6">
-              <div class="lesson-card flex-center text-center">
-                <% if current_user && (current_user.enrolled_in?(@course) || @course.user == current_user) %>
-                  <%= link_to lesson_path(lesson) do %>
-                    <%= render 'lesson_card', lesson: lesson %>
-                  <% end %>
-                <% else %>
-                  <div>
-                    <%= render 'lesson_card', lesson: lesson %>
+      <h1 class="course-title text-center"><%= @course.title %></h1>
+      <hr />
+      <% if @course.sections.present? %>
+        <div class="sections">
+          <% @course.sections.rank(:row_order).each do |section| %>
+            <div class="section-item">
+              <div class="section-item-header text-center">
+                <%= section.title %>
+              </div>
+              <div class="section-body">
+                <% if section.lessons.present? %>
+
+                  <div class="lessons row">
+                    <% section.lessons.rank(:row_order).each do |lesson| %>
+                      <div class="col-xs-12 col-sm-6">
+                        <div class="lesson-card">
+                          <div class="lesson-info flex-center text-center">
+                            <% if current_user && (current_user.enrolled_in?(@course) || @course.user == current_user) %>
+                              <%= link_to lesson_path(lesson) do %>
+                                <%= render 'lesson_card', lesson: lesson %>
+                              <% end %>
+                            <% else %>
+                              <div>
+                                <%= render 'lesson_card', lesson: lesson %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
+
                 <% end %>
               </div>
+              <br class="clear" />
             </div>
           <% end %>
         </div>
       <% end %>
+    </div>
+    <div class="sidebar col-xs-12 col-sm-4 col-md-3 text-center">
+      <%= render 'course_image', course: @course %>
+      <hr />
+      <h3><span class="label label-success">
+        Cost: <%= @course.is_free? ? 'Free!' : (number_to_currency @course.cost) %>
+      </span></h3>
+      <% if current_user %>
+      <% if current_user == @course.user %>
+      <%= link_to 'Administer Course', instructor_course_path(@course), class: 'btn btn-warning' %>
+      <% elsif current_user.enrolled_in?(@course) %>
+      <h3><span class="label label-info">You are enrolled in this course!</span></h3>
+      <% elsif @course.is_free? %>
+      <%= link_to 'Enroll in Course', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
+      <% else %>
+      <%= form_tag course_enrollments_path(@course) do %>
+      <script src="https://checkout.stripe.com/checkout.js"></script>
+      <button id="enrollButton" class="btn btn-primary">Enroll in Course</button>
+      <script><%= render 'payments.js' %></script>
+      <% end %>
+      <% end %>
+      <% else %>
+      <%= link_to 'Sign in to Enroll', new_user_session_path, class: 'btn btn-primary' %>
+      <% end %>
+      <hr />
+      <p><%= @course.description %></p>
     </div>
   </div>
 </div>
