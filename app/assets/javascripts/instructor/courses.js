@@ -1,10 +1,10 @@
 $(function() {
-  const sortableObjects = ["lessons", "sections"]
+  const sortableObjects = ["lessons", "sections"];
   const sectionIcons = {
     header: "glyphicon glyphicon-menu-left",
     activeHeader: "glyphicon glyphicon-menu-down"
   };
-  let ajaxParams = {
+  var ajaxParams = {
     type: 'PUT',
     dataType: 'json'
   };
@@ -17,7 +17,6 @@ $(function() {
   for (let sortObject of sortableObjects) {
     $(document.getElementsByClassName(sortObject))
     .sortable({
-      cancel: ".ui-state-disabled",
       update: function(event, ui) {
         ajaxParams.url = ui.item.data('update-url');
         if (sortObject == "lessons") {
