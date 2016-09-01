@@ -1,8 +1,9 @@
 <div class="lift-box col-xs-12 col-sm-10 col-sm-offset-1">
-  <h1 class="pull-left"><%= current_lesson.title %>: <%= current_lesson.subtitle %></h1>
-  <%= link_to 'Back to Course Page', course_path(current_lesson.section.course), class: 'btn btn-h1 btn-primary pull-right' %>
-
-  <hr class="clear" />
+  <div class="text-center">
+    <h1 class="lesson-header"><%= current_lesson.section.course.title %></h1>
+    <h3><%= current_lesson.section.title %> | <%= current_lesson.title %>: <%= current_lesson.subtitle %></h3>
+  </div>
+  <hr />
   <% if current_lesson.video.present? %>
     <video id="my-video" class="video-js vjs-default-skin vjs-fluid vjs-big-play-centered" controls preload="auto" poster="<%= image_path 'black.jpg' %>" data-setup="{}">
       <source src="<%= current_lesson.video.to_s %>" type='video/mp4'>
@@ -15,6 +16,32 @@
     </video>
     <hr />
   <% end %>
-
-  <p><%= current_lesson.section.course.description %></p>
+  <div class="row course-nav">
+    <div class="col-xs-12 col-sm-3">
+      <% if current_lesson.previous_lesson.present? %>
+        <%= link_to lesson_path(current_lesson.previous_lesson), class: 'btn btn-default btn-block' do %>
+          <span class="glyphicon glyphicon-step-backward"></span>
+          Prev. Lesson
+        <% end %>
+      <% else %>
+        <button class="btn btn-default disabled btn-block">Ready? Let's go!</button>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= link_to 'Back to Course Page', course_path(current_lesson.section.course), class: 'btn btn-primary btn-block' %>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <% if current_lesson.next_lesson.present? %>
+        <%= link_to lesson_path(current_lesson.next_lesson), class: 'btn btn-default btn-block' do %>
+          Next Lesson
+          <span class="glyphicon glyphicon-step-forward"></span>
+        <% end %>
+      <% else %>
+        <%= link_to course_path(current_lesson.section.course), class: 'btn btn-success btn-block' do %>
+          All Done!&nbsp;
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
