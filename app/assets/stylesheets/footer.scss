@@ -1,7 +1,7 @@
 #footer {
   // height: $footer-height;
   background-color: $footer-color;
-  margin-top: 50px;
+  margin-top: $body-padding;
   padding: 10px 0;
   & > div {
     text-align: center;

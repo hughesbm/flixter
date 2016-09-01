@@ -54,8 +54,9 @@
         <%= render 'course_image', course: current_course %>
       </div>
       <hr />
-      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-warning' %>
-      <br />
+      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-primary' %>
+      <hr />
+      <p><%= current_course.description %></p>
     </div>
   </div>
 </div>
