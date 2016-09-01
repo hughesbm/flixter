@@ -14,7 +14,10 @@ class Instructor::SectionsController < ApplicationController
 
   def update
     current_section.update_attributes(section_params)
-    render plain: 'updated!'
+    respond_to do |format|
+      format.html { redirect_to instructor_course_path(current_section.course) }
+      format.json { render plain: 'updated!' }
+    end
   end
 
   private

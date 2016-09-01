@@ -44,4 +44,13 @@
       <% end %>
     </div>
   </div>
+  <% if current_lesson.additional_notes.present? %>
+    <hr />
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Additional Notes:</h4>
+        <p><%= current_lesson.additional_notes %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

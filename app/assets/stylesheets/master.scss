@@ -154,14 +154,6 @@ body {
   padding: 20px;
 }
 
-.instructor-card {
-  margin-top: 20px !important;
-}
-
-.instructor-list {
-  padding-top: 10px;
-}
-
 .item-row {
   margin: 20px 0;
 }
@@ -178,10 +170,18 @@ body {
   font-size: 15px;
   color: white;
 
-  .glyphicon-option-vertical {
+  .glyphicon-option-vertical,
+  .glyphicon-pencil {
     position: absolute;
     top: 15px;
+  }
+
+  .glyphicon-option-vertical {
     left: 15px;
+  }
+
+  .glyphicon-pencil {
+    left: 45px;
   }
 
   .lesson-info {
@@ -247,22 +247,61 @@ body {
   @extend .flat-box;
   margin-bottom: 20px;
   padding-bottom: 0px;
+  position: relative;
+
+  & > .glyphicon {
+    position: absolute;
+    top: 20px;
+    z-index: 2;
+  }
+
+  & > .glyphicon-option-vertical {
+    left: 20px;
+  }
+
+  & > .glyphicon-pencil {
+    left: 60px;
+  }
+
+  @media (max-width: 767px) {
+    & > .glyphicon {
+      left: 10px;
+    }
+    & > .glyphicon-option-vertical {
+      top: 0;
+    }
+    & > .glyphicon-pencil {
+      top: 42px;
+    }
+  }
 }
 
 .section-item-header {
   position: relative;
+  z-index: 1;
 
-  .glyphicon-option-vertical {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .title {
+    display: inline-block;
+    max-width: 70%;
   }
 
-  .ui-accordion-header-icon {
+  @media (max-width: 767px) {
+    .title {
+      max-width: 80%;
+    }
+  }
+
+
+  & > .ui-accordion-header-icon {
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 2;
   }
+}
+
+.sidebar .btn {
+  margin: 5px;
 }
 
 // Text styles
@@ -274,6 +313,12 @@ a {
   &:focus {
     color: $brand-color-dark;
     text-decoration: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .course-row-info {
+    text-align: center !important;
   }
 }
 
@@ -328,13 +373,29 @@ a {
   @extend .new-item;
 }
 
+.section-item {
+
+  .glyphicon-pencil {
+    cursor: pointer;
+  }
+
+  & > .glyphicon {
+    font-size: 25px;
+    line-height: 40px;
+  }
+  @media (max-width: 767px) {
+    & > .glyphicon {
+      font-size: 20px;
+    }
+  }
+}
+
 .section-item-header {
   font-size: 30px;
 
   .glyphicon {
     font-size: 25px;
     line-height: 40px;
-    font-size: 30px;
   }
 }
 

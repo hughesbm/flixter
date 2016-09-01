@@ -1,16 +1,13 @@
-<%= simple_form_for @lesson, url: '#', html: { id: 'newLessonForm' } do |f| %>
+<%= simple_form_for @section, url: '#', method: :patch, html: { id: 'editSectionModalForm' } do |f| %>
   <div class="modal-body">
     <div class="form-inputs">
       <%= f.input :title %>
-      <%= f.input :subtitle %>
-      <%= f.input :additional_notes %>
-      <%= f.input :video %>
     </div>
   </div>
   <div class="modal-footer">
     <div class="form-actions">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= f.button :submit, 'Update', class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

@@ -3,6 +3,10 @@ class LessonsController < ApplicationController
   before_action :require_authorized_for_current_section
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: current_lesson, only: [ :title, :subtitle, :additional_notes ] }
+    end
   end
 
   private

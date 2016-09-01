@@ -9,31 +9,27 @@
           <% @course.sections.rank(:row_order).each do |section| %>
             <div class="section-item">
               <div class="section-item-header text-center">
-                <%= section.title %>
+                <span class="title"><%= section.title %></span>
               </div>
               <div class="section-body">
                 <% if section.lessons.present? %>
-
-                  <div class="lessons row">
+                  <div class="lessons">
                     <% section.lessons.rank(:row_order).each do |lesson| %>
-                      <div class="col-xs-12 col-sm-6">
-                        <div class="lesson-card">
-                          <div class="lesson-info flex-center text-center">
-                            <% if current_user && (current_user.enrolled_in?(@course) || @course.user == current_user) %>
-                              <%= link_to lesson_path(lesson) do %>
-                                <%= render 'lesson_card', lesson: lesson %>
-                              <% end %>
-                            <% else %>
-                              <div>
-                                <%= render 'lesson_card', lesson: lesson %>
-                              </div>
+                      <div class="lesson-card">
+                        <div class="lesson-info flex-center text-center">
+                          <% if current_user && (current_user.enrolled_in?(@course) || @course.user == current_user) %>
+                            <%= link_to lesson_path(lesson) do %>
+                              <%= render 'lesson_card', lesson: lesson %>
                             <% end %>
-                          </div>
+                          <% else %>
+                            <div>
+                              <%= render 'lesson_card', lesson: lesson %>
+                            </div>
+                          <% end %>
                         </div>
                       </div>
                     <% end %>
                   </div>
-
                 <% end %>
               </div>
               <br class="clear" />
@@ -45,9 +41,11 @@
     <div class="sidebar col-xs-12 col-sm-4 col-md-3 text-center">
       <%= render 'course_image', course: @course %>
       <hr />
-      <h3><span class="label label-success">
-        Cost: <%= @course.is_free? ? 'Free!' : (number_to_currency @course.cost) %>
-      </span></h3>
+      <h4>Course Description:</h4>
+      <p><%= @course.description %></p>
+      <hr />
+      <h4>Cost: <%= @course.is_free? ? 'Free!' : (number_to_currency @course.cost) %></h4>
+      <p>Students Enrolled: <%= @course.enrollments.count %></p>
       <% if current_user %>
         <% if current_user == @course.user %>
           <%= link_to 'Admin Panel', instructor_course_path(@course), class: 'btn btn-warning' %>
@@ -65,8 +63,6 @@
       <% else %>
         <%= link_to 'Sign in to Enroll', new_user_session_path, class: 'btn btn-primary' %>
       <% end %>
-      <hr />
-      <p><%= @course.description %></p>
     </div>
   </div>
 </div>

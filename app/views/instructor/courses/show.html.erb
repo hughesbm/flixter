@@ -7,19 +7,21 @@
       <% if current_course.sections.present? %>
         <div class="sections">
           <% current_course.sections.rank(:row_order).each do |section| %>
-            <div class="section-item" data-update-url="<%= instructor_section_path(section) %>">
+            <div class="section-item" data-title="<%= section.title %>" data-update-url="<%= instructor_section_path(section) %>">
+              <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editSectionModal" aria-hidden="true"></span>
               <div class="section-item-header text-center">
-                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-                <%= section.title %>
+                <span class="title"><%= section.title %></span>
               </div>
-              <div class="section-body instructor-list">
+              <div class="section-body">
                 <% if section.lessons.present? %>
                   <div class="lessons">
                     <% section.lessons.rank(:row_order).each do |lesson| %>
-                      <div class="lesson-card instructor-card" data-update-url="<%= instructor_lesson_path(lesson) %>">
+                      <div class="lesson-card" data-title="<%= lesson.title %>" data-subtitle="<%= lesson.subtitle %>" data-additional-notes="<%= lesson.additional_notes %>" data-get-url="<%= lesson_path(lesson) %>" data-update-url="<%= instructor_lesson_path(lesson) %>">
                         <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editLessonModal" aria-hidden="true"></span>
                         <div class="lesson-info flex-center text-center">
-                          <div>
+                          <div class="title">
                             <%= render 'lesson_card', lesson: lesson %>
                           </div>
                         </div>
@@ -28,7 +30,7 @@
                   </div>
                 <% end %>
                 <div class="new-lesson">
-                  <div class="new-lesson-card instructor-card" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
+                  <div class="new-lesson-card" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
                     <div class="new-item flex-center text-center">
                       <div>
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <b>New Lesson</b>
@@ -54,12 +56,22 @@
         <%= render 'course_image', course: current_course %>
       </div>
       <hr />
-      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-primary' %>
-      <hr />
+      <h4>Course Description:</h4>
       <p><%= current_course.description %></p>
+      <hr />
+      <h4>Cost: <%= current_course.is_free? ? 'Free!' : (number_to_currency current_course.cost) %></h4>
+      <p>Students Enrolled: <%= current_course.enrollments.count %></p>
+      <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-primary' %>
+      <button class="btn btn-warning" data-toggle="modal" data-target="#editCourseModal">
+        <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        &nbsp;Edit Course
+      </button>
     </div>
   </div>
 </div>
 <!-- Modals for new sections / lessons -->
-<%= render partial: 'new_item_modal', locals: { type: "Section" } %>
-<%= render partial: 'new_item_modal', locals: { type: "Lesson" } %>
+<%= render partial: 'item_modal', locals: { type: "Course", action: "Edit" } %>
+<%= render partial: 'item_modal', locals: { type: "Section", action: "New" } %>
+<%= render partial: 'item_modal', locals: { type: "Section", action: "Edit" } %>
+<%= render partial: 'item_modal', locals: { type: "Lesson", action: "New" } %>
+<%= render partial: 'item_modal', locals: { type: "Lesson", action: "Edit" } %>
