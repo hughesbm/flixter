@@ -12,12 +12,12 @@
   </head>
 
   <body>
+    <%= render 'navbar', title: 'Flixter' %>
     <div id="wrap">
-      <%= render 'layouts/navbar', title: 'Flixter' %>
       <%= render 'flash_messages', flash: flash %>
       <%= yield %>
       <br class="clear">
     </div>
-    <%= render 'layouts/footer' %>
+    <%= render 'footer' %>
   </body>
 </html>
