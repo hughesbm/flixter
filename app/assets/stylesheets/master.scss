@@ -201,11 +201,6 @@ body {
   -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
   box-shadow: 1px 1px 2px 0 #d0d0d0;
   background: #fff;
-
-  h1 {
-    font-family: $logo-font;
-    color: $brand-color;
-  }
 }
 
 @media (max-width: 767px) {
@@ -307,11 +302,11 @@ body {
 // Text styles
 
 a {
-  color: $brand-color;
+  color: $brand-color-dark;
 
   &:hover,
   &:focus {
-    color: $brand-color-dark;
+    color: $brand-color;
     text-decoration: none;
   }
 }
@@ -320,12 +315,6 @@ a {
   .course-row-info {
     text-align: center !important;
   }
-}
-
-.course-title {
-  color: $brand-color;
-  font-family: $logo-font;
-  font-size: 45px;
 }
 
 .features {
@@ -349,16 +338,21 @@ a {
   }
 }
 
-.lesson-header {
-  @extend .course-title;
-  font-size: 40px;
-}
-
 .lift-box {
   h1, h2, h3 {
     margin-top: 10px;
     margin-bottom: 20px;
   }
+  h1 {
+    font-family: $logo-font;
+    color: $brand-color;
+    font-size: 40px;
+  }
+}
+
+.modal-title {
+  font-family: $logo-font;
+  color: $brand-color;
 }
 
 .new-item {
