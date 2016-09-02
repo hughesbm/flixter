@@ -1,6 +1,6 @@
 class Instructor::CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_authorized_for_current_course, only: [:show, :update]
+  before_action :require_authorized_for_current_course, only: [:show, :update, :destroy]
 
   def new
     @course = Course.new
@@ -23,6 +23,17 @@ class Instructor::CoursesController < ApplicationController
   def update
     current_course.update_attributes(course_params)
     redirect_to instructor_course_path(current_course)
+  end
+
+  def destroy
+    if current_course.enrollments.present?
+      flash[:error] = "Course could not be deleted as there are students enrolled in it. Contact a site admin for assistance."
+      redirect_to instructor_course_path(current_course)
+    else
+      current_course.destroy
+      flash[:success] = "Course successfully deleted."
+      redirect_to dashboard_path
+    end
   end
 
   private

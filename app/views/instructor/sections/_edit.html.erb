@@ -3,6 +3,8 @@
     <div class="form-inputs">
       <%= f.input :title %>
     </div>
+    <h4>Delete this section?</h4>
+    <%= link_to 'Yes, delete it', '#', method: :delete, data: { confirm: 'Are you ABSOLUTELY SURE you want to delete this section? Students who paid for it may come after you with torches and pitchforks.' }, class: 'btn btn-danger', id: 'delete_button' %>
   </div>
   <div class="modal-footer">
     <div class="form-actions">

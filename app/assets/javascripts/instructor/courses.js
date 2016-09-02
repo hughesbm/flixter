@@ -9,7 +9,7 @@ $(function() {
     var lessonUrl = $( event.currentTarget ).data('lesson-url');
     $('#newLessonForm').attr('action', lessonUrl);
   });
-  // Sets proper url/target for section/lesson updating, adds current data from db to update form
+  // Sets proper url/target for section/lesson updating/deleting, adds current data from db to update form
   $('.glyphicon-pencil').click(function( event ){
     var parentNode = $( event.currentTarget ).parent()
     var updateUrl = parentNode.data('update-url');
@@ -21,6 +21,7 @@ $(function() {
     } else {
       $( modalTarget + ' #section_title' ).val( parentNode.data('title') );
     }
+    $( modalTarget + ' #delete_button').attr('href', updateUrl);
     $( modalTarget ).attr('action', updateUrl);
   });
   // Accordions sections

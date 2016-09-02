@@ -1,7 +1,7 @@
 class Instructor::SectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_authorized_for_current_course, only: :create
-  before_action :require_authorized_for_current_section, only: :update
+  before_action :require_authorized_for_current_section, only: [:update, :destroy]
 
   def create
     @section = current_course.sections.create(section_params)
@@ -18,6 +18,13 @@ class Instructor::SectionsController < ApplicationController
       format.html { redirect_to instructor_course_path(current_section.course) }
       format.json { render plain: 'updated!' }
     end
+  end
+
+  def destroy
+    @course = current_section.course
+    current_section.destroy
+    flash[:success] = "Section successfully deleted."
+    redirect_to instructor_course_path(@course)
   end
 
   private

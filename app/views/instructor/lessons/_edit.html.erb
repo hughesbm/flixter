@@ -5,6 +5,8 @@
       <%= f.input :subtitle %>
       <%= f.input :additional_notes %>
       <%= f.input :video %>
+      <h4>Delete this lesson?</h4>
+      <%= link_to 'Yes, delete it', '#', method: :delete, data: { confirm: 'Are you ABSOLUTELY SURE you want to delete this lesson? Students who paid for it may come after you with torches and pitchforks.' }, class: 'btn btn-danger', id: 'delete_button' %>
     </div>
   </div>
   <div class="modal-footer">

@@ -6,6 +6,8 @@
       <%= f.input :cost %>
       <%= f.input :image %>
     </div>
+    <h4>Delete this course?</h4>
+    <%= link_to 'Yes, delete it', instructor_course_path(current_course), method: :delete, data: { confirm: 'Are you ABSOLUTELY SURE you want to delete this course? Students who paid for it may come after you with torches and pitchforks.' }, class: 'btn btn-danger' %>
   </div>
   <div class="modal-footer">
     <div class="form-actions">
