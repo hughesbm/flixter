@@ -41,9 +41,6 @@
     <div class="sidebar col-xs-12 col-sm-4 col-md-3 text-center">
       <%= render 'course_image', course: @course %>
       <hr />
-      <h4>Course Description:</h4>
-      <p><%= @course.description %></p>
-      <hr />
       <h4>Cost: <%= @course.is_free? ? 'Free!' : (number_to_currency @course.cost) %></h4>
       <p>Students Enrolled: <%= @course.enrollments.count %></p>
       <% if current_user %>
@@ -63,6 +60,9 @@
       <% else %>
         <%= link_to 'Sign in to Enroll', new_user_session_path, class: 'btn btn-primary' %>
       <% end %>
+      <hr />
+      <h4>Course Description:</h4>
+      <p><%= @course.description %></p>
     </div>
   </div>
 </div>

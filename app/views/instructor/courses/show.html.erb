@@ -56,9 +56,6 @@
         <%= render 'course_image', course: current_course %>
       </div>
       <hr />
-      <h4>Course Description:</h4>
-      <p><%= current_course.description %></p>
-      <hr />
       <h4>Cost: <%= current_course.is_free? ? 'Free!' : (number_to_currency current_course.cost) %></h4>
       <p>Students Enrolled: <%= current_course.enrollments.count %></p>
       <%= link_to 'View as Student', course_path(current_course), class: 'btn btn-primary' %>
@@ -66,6 +63,9 @@
         <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
         &nbsp;Edit Course
       </button>
+      <hr />
+      <h4>Course Description:</h4>
+      <p><%= current_course.description %></p>
     </div>
   </div>
 </div>
